@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="SeboOnline:war">
+    <output-path>D:/XAMPP/tomcat/webapps</output-path>
+    <root id="archive" name="SeboOnline.war">
+      <element id="artifact" artifact-name="SeboOnline:war exploded" />
+    </root>
+  </artifact>
+</component>

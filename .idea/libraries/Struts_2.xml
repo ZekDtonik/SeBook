@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="Struts 2" type="struts2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/asm-5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/asm-commons-5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/asm-tree-5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/commons-fileupload-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/commons-io-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/commons-lang-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/commons-lang3-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/freemarker-2.3.28.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/javassist-3.20.0-GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/ognl-3.1.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/log4j-api-2.11.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/struts2-core-2.5.20.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/struts2-convention-plugin-2.5.20.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/Struts2.5/struts2-json-plugin-2.5.20.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/commons-io-2.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

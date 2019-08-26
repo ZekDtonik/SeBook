@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!-- -->
+    <constant name="struts.devMode" value="true"/>
+    <!-- Um pacote padrão para o projeto é definido chamado mainPackage
+     A estrutura .xml do struts é obrigatório quando se trabalha com
+     INTERCEPTORS, sendo assim como o servidor retornará dados do tipo JSON
+     o pacote extende o módulo json-default
+    -->
+    <package name="mainPackage" extends="json-default, struts-default">
+        <interceptors>
+            <interceptor name="cors" class="Interceptors.Cors"/>
+            <interceptor name="guard" class="Interceptors.Guard"/>
+            <interceptor-stack name="mainIntStack">
+                <interceptor-ref name="cors"/>
+                <interceptor-ref name="guard"/>
+                <interceptor-ref name="json"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="cookieProvider"/>
+
+            </interceptor-stack>
+        </interceptors>
+        <!-- Stack de interceptadores padrão do servidor, ou seja, para todos as requisições
+        o stack de interceptadores será invocado
+        -->
+        <default-interceptor-ref name="mainIntStack"/>
+        <!-- Resultados Globais, Esses resultados define o tipo de ação que será tomado quando um resultado ocorrer
+        esses resultados são os 5 resultados preexistentes do ACTION ou resultados personalizados criados.
+
+        Esses resultados atribuem a todas as action existentes a ação padrão a ser tomada. Caso a Action não defina
+        um valor de tipo de resultado, por padrão o valor sera definido aqui.
+        -->
+        <global-results>
+            <result type="json"/>
+            <result name="login" type="redirect">/system/login</result>
+        </global-results>
+
+    </package>
+</struts>
