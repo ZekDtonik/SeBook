@@ -34,6 +34,7 @@ public class StoreManager extends ActionSupport implements AuthRequired, Session
     }
     @Action(value = "/system/store/add")
     public String addItem() {
+
         Map<String, String[]> map = this.request.getParameterMap();
         String[] itens = map.get("products[item]");
         String[] qnt = map.get("products[qnt]");
@@ -64,6 +65,7 @@ public class StoreManager extends ActionSupport implements AuthRequired, Session
                 else{
                     purchaseHistoryItem.setProduct(currentProduct);
                     purchaseHistoryItem.setQuantity(Integer.parseInt(currentQnt));
+                    purchaseHistoryItem.setPurchaseHistory(purchaseHistory);
 
                     productsToAdd.add(purchaseHistoryItem);
                     statusCart = true;
@@ -71,26 +73,34 @@ public class StoreManager extends ActionSupport implements AuthRequired, Session
             }
 
             if(statusCart){
-                Map<String, String> mapWhere = new HashMap<>();
-                mapWhere.put("login",this.session.get(Defs.HANDLE_USER).toString());
-                Users users = (Users) DAO.findOne("SELECT usr FROM Users usr WHERE login:login",mapWhere);
-                purchaseHistory.setDate(new Date());
-                purchaseHistory.setUsers(users);
-                purchaseHistory.setProducts(productsToAdd);
-                String messageVariable;
-                if(actionStatus.equals("buy")) {
-                    messageVariable = "Obrigado por comprar conosco. Voce pode visualizar os seus itens adquiridos no seu perfil. Volte Sempre!!";
-                }
-                else {
-                    messageVariable = "Os itens foram salvos para compra futura. Observe que ao salvar o carrinho não garante o mesmo valor dos itens atuais caso sejam alterados.";
-                }
 
-                boolean result = DAO.insert(purchaseHistory);
-                if(result) {
-                    this.result = ResultMessage.applyResult("ST200",true,messageVariable);
+                String messageVariable;
+                if(actionStatus == null) {
+                    this.result = ResultMessage.applyResult("ST01",false,"Nenhuma ação foi encontrada no requisição disprada.");
                 }
-                else {
-                    this.result = ResultMessage.applyResult("ST300",false,"Não foi possível processar a sua solicitação. Tente novamente");
+                else{
+                    Map<String, String> mapWhere = new HashMap<>();
+                    mapWhere.put("login",this.session.get(Defs.HANDLE_USER).toString());
+                    Users users = (Users) DAO.findOne("SELECT usr FROM Users usr WHERE login=:login",mapWhere);
+                    purchaseHistory.setDate(new Date());
+                    purchaseHistory.setUsers(users);
+                    purchaseHistory.setStatus(actionStatus);
+                    purchaseHistory.setProducts(productsToAdd);
+
+                    if(actionStatus.equals("buy")) {
+                        messageVariable = "Obrigado por comprar conosco. Voce pode visualizar os seus itens adquiridos no seu perfil. Volte Sempre!!";
+                    }
+                    else {
+                        messageVariable = "Os itens foram salvos para compra futura. Observe que ao salvar o carrinho não garante o mesmo valor dos itens atuais caso sejam alterados.";
+                    }
+
+                    boolean result = DAO.insert(purchaseHistory);
+                    if(result) {
+                        this.result = ResultMessage.applyResult("ST200",true, messageVariable);
+                    }
+                    else {
+                        this.result = ResultMessage.applyResult("ST300",false,"Não foi possível processar a sua solicitação. Tente novamente. ");
+                    }
                 }
             }
         }

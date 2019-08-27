@@ -20,6 +20,8 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.ideaLibSources/commons-io-2.6-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.ideaLibSources/ognl-3.1.21-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.ideaLibSources/struts2-core-2.5.20-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

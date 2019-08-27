@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="seboonline@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.11">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.16">
     <root id="1">
-      <ServerVersion>5.5.5</ServerVersion>
-      <RdbmsFlavour>MariaDB</RdbmsFlavour>
+      <ServerVersion>10.1.40</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
     </root>
     <schema id="2" parent="1" name="allocteacher">
@@ -25,7 +23,6 @@
     </schema>
     <schema id="7" parent="1" name="seboonline">
       <Current>1</Current>
-      <Visible>1</Visible>
       <Collation>latin1_swedish_ci</Collation>
     </schema>
     <schema id="8" parent="1" name="test">
@@ -1004,237 +1001,248 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="255" parent="244" name="category_name_uindex">
+    <index id="255" parent="244" name="UK_46ccwnsi9409t36lurvtyljak">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="256" parent="244" name="PRIMARY">
+    <index id="256" parent="244" name="category_name_uindex">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="257" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="257" parent="244" name="category_name_uindex">
+    <key id="258" parent="244" name="UK_46ccwnsi9409t36lurvtyljak">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>UK_46ccwnsi9409t36lurvtyljak</UnderlyingIndexName>
+    </key>
+    <key id="259" parent="244" name="category_name_uindex">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>category_name_uindex</UnderlyingIndexName>
     </key>
-    <column id="258" parent="245" name="id">
+    <column id="260" parent="245" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="245" name="name">
+    <column id="261" parent="245" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="245" name="sinopse">
+    <column id="262" parent="245" name="sinopse">
       <Position>3</Position>
       <DataType>varchar(65000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="245" name="value">
+    <column id="263" parent="245" name="value">
       <Position>4</Position>
       <DataType>float|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="245" name="category_id">
+    <column id="264" parent="245" name="category_id">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="245" name="author_id">
+    <column id="265" parent="245" name="author_id">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="245" name="image">
+    <column id="266" parent="245" name="image">
       <Position>7</Position>
       <DataType>longtext|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="265" parent="245" name="FKaafsro59ov8aqukcf0ag1aptg">
+    <index id="267" parent="245" name="UK_o61fmio5yukmmiqgnxf8pnavn">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="268" parent="245" name="FK1cf90etcu98x1e6n9aks3tel3">
       <ColNames>category_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="266" parent="245" name="FK349h4nldfqhip5m79o7swci56">
+    <index id="269" parent="245" name="FK349h4nldfqhip5m79o7swci56">
       <ColNames>author_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="267" parent="245" name="PRIMARY">
+    <key id="270" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="268" parent="245" name="FKaafsro59ov8aqukcf0ag1aptg">
+    <key id="271" parent="245" name="UK_o61fmio5yukmmiqgnxf8pnavn">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>UK_o61fmio5yukmmiqgnxf8pnavn</UnderlyingIndexName>
+    </key>
+    <foreign-key id="272" parent="245" name="FK1cf90etcu98x1e6n9aks3tel3">
       <ColNames>category_id</ColNames>
-      <RefSchemaName>seboonline</RefSchemaName>
       <RefTableName>category</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="269" parent="245" name="FK349h4nldfqhip5m79o7swci56">
+    <foreign-key id="273" parent="245" name="FKaafsro59ov8aqukcf0ag1aptg">
+      <ColNames>category_id</ColNames>
+      <RefTableName>category</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="274" parent="245" name="FK349h4nldfqhip5m79o7swci56">
       <ColNames>author_id</ColNames>
-      <RefSchemaName>seboonline</RefSchemaName>
       <RefTableName>author</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="270" parent="246" name="id">
+    <column id="275" parent="246" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="246" name="status">
+    <column id="276" parent="246" name="status">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="246" name="user">
+    <column id="277" parent="246" name="user">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="246" name="date">
+    <column id="278" parent="246" name="date">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="274" parent="246" name="PRIMARY">
+    <key id="279" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="275" parent="247" name="id">
+    <column id="280" parent="247" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="247" name="history">
+    <column id="281" parent="247" name="history">
       <Position>2</Position>
-      <DataType>tinyblob|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="277" parent="247" name="products">
-      <Position>3</Position>
-      <DataType>tinyblob|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="278" parent="247" name="quantity">
-      <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="247" name="product">
-      <Position>5</Position>
-      <DataType>tinyblob|0s</DataType>
+    <column id="282" parent="247" name="product">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="247" name="purchaseHistory_id">
-      <Position>6</Position>
+    <column id="283" parent="247" name="quantity">
+      <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="281" parent="247" name="FKqd05bmy4w47bwwitkvn9b6vhw">
-      <ColNames>purchaseHistory_id</ColNames>
+    <index id="284" parent="247" name="history_to_item">
+      <ColNames>history</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="282" parent="247" name="PRIMARY">
+    <index id="285" parent="247" name="product_item">
+      <ColNames>product</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="286" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="283" parent="247" name="FKc7w0uvx7g3wqqdnuu8j70o8vl">
-      <ColNames>id</ColNames>
-      <RefSchemaName>seboonline</RefSchemaName>
+    <foreign-key id="287" parent="247" name="history_to_item">
+      <ColNames>history</ColNames>
       <RefTableName>purchasehistory</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="284" parent="247" name="FKqd05bmy4w47bwwitkvn9b6vhw">
-      <ColNames>purchaseHistory_id</ColNames>
-      <RefSchemaName>seboonline</RefSchemaName>
-      <RefTableName>purchasehistory</RefTableName>
+    <foreign-key id="288" parent="247" name="product_item">
+      <ColNames>product</ColNames>
+      <RefTableName>products</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="285" parent="248" name="id">
+    <column id="289" parent="248" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="248" name="user_id">
+    <column id="290" parent="248" name="code">
       <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="248" name="code">
+    <column id="291" parent="248" name="validity">
       <Position>3</Position>
-      <DataType>varchar(5)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="248" name="validity">
+    <column id="292" parent="248" name="user_id">
       <Position>4</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="289" parent="248" name="FKl2dhgqgf1hus9yst2x36jhb4d">
+    <index id="293" parent="248" name="FKl2dhgqgf1hus9yst2x36jhb4d">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="290" parent="248" name="PRIMARY">
+    <key id="294" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="291" parent="248" name="FKl2dhgqgf1hus9yst2x36jhb4d">
+    <foreign-key id="295" parent="248" name="FKl2dhgqgf1hus9yst2x36jhb4d">
       <ColNames>user_id</ColNames>
-      <RefSchemaName>seboonline</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="292" parent="249" name="id">
+    <column id="296" parent="249" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="249" name="email">
+    <column id="297" parent="249" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="249" name="login">
+    <column id="298" parent="249" name="login">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="249" name="name">
+    <column id="299" parent="249" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="249" name="passwd">
+    <column id="300" parent="249" name="passwd">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="249" name="level">
+    <column id="301" parent="249" name="level">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="298" parent="249" name="PRIMARY">
+    <key id="302" parent="249" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

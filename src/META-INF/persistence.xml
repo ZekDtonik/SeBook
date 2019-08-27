@@ -14,6 +14,7 @@
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
 
+            <property name="javax.persistence.schema-generation.database.action" value="update" />
             <!--  atualiza o banco, gera as tabelas se for preciso -->
             <property name="hibernate.hbm2ddl.auto" value="update" />
 
