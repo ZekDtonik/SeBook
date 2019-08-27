@@ -31,7 +31,7 @@ public class ListProducts extends ActionSupport {
             this.actionValue = uri[4];
     }
 
-    @Action(value = "/system/products/")
+    @Action(value = "/system/products")
     public String findAll(){
         List<Persistence.Products> products = DAO.findAll("SELECT pj FROM Products as pj");
         this.setProducts(products);

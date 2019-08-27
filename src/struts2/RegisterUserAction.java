@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Enumeration;
 
 @ParentPackage("mainPackage")
-@Action(value = "/system/register/User", results = @Result(type = "json"))
+@Action(value = "/system/register/user", results = @Result(type = "json"))
 public class RegisterUserAction extends ActionSupport {
 
     private HttpServletRequest req = ServletActionContext.getRequest();

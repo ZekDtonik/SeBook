@@ -30,7 +30,7 @@ public class ListAuthor extends ActionSupport {
             this.actionValue = uri[4];
     }
 
-    @Action(value = "/system/authors!/")
+    @Action(value = "/system/authors")
     public String findAll(){
         List<Author> authors = DAO.findAll("SELECT atr FROM Author as atr");
         this.setAuthor(authors);

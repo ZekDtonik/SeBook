@@ -51,7 +51,7 @@ public class ListPurchaseHistory extends ActionSupport implements SessionAware, 
         paramUser.put("lg",(String) this.session.get(Defs.HANDLE_USER));
         this.user = (Users) DAO.findOne("SELECT usr FROM Users AS usr WHERE login=:lg",paramUser);
     }
-    @Action(value = "/system/store/")
+    @Action(value = "/system/store")
     public String findAll(){
         this.buildUserFromSession();
 

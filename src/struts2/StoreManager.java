@@ -16,6 +16,8 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @ParentPackage("mainPackage")
 
@@ -101,6 +103,40 @@ public class StoreManager extends ActionSupport implements AuthRequired, Session
                     else {
                         this.result = ResultMessage.applyResult("ST300",false,"Não foi possível processar a sua solicitação. Tente novamente. ");
                     }
+                }
+            }
+        }
+
+        return SUCCESS;
+    }
+    @Action(value = "/system/store/del")
+    public String delHistory(){
+        String delParam = this.request.getParameter("id");
+        Pattern pattern = Pattern.compile("([0-9]+)");
+        Matcher matcher = pattern.matcher(delParam);
+        if(delParam == null || delParam.equals("")){
+            this.result = ResultMessage.applyResult("ST02",false,"O valor do objeto necessário para realização do procedimento não existe.");
+        }
+        else if(delParam != null && !matcher.matches()) {
+            this.result = ResultMessage.applyResult("ST12",false,"O valor do objeto inserido para o procedimento não é válido.");
+        }
+        else{
+            PurchaseHistory purchaseHistory = (PurchaseHistory) DAO.getById(PurchaseHistory.class,Integer.parseInt(delParam));
+            if(purchaseHistory == null){
+                this.result = ResultMessage.applyResult("ST22",false,"O histórico que está tentando excluir não existe.");
+            }
+            else if(purchaseHistory.getStatus().equals("buy")){
+                this.result = ResultMessage.applyResult("ST31",false,"Não é possível remover um histórico de aquisições, apenas de carrinhos salvos para compras posteriores.");
+            }
+            else {
+
+                boolean result = DAO.delete(purchaseHistory);
+                if(result) {
+                    this.result = ResultMessage.applyResult("ST202", true,"Histórico removido com sucesso.");
+                }
+                else {
+                    this.result = ResultMessage.applyResult("ST302", true,"Ocorreu um erro na tentatio de remoção do histórico.");
+
                 }
             }
         }
