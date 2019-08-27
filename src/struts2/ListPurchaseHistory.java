@@ -43,8 +43,7 @@ public class ListPurchaseHistory extends ActionSupport implements SessionAware, 
 
 
         String[] uri = ServletActionContext.getRequest().getRequestURI().split("/");
-        if(uri.length >= 4)
-            this.actionValue = uri[4];
+        this.actionValue = uri[(uri.length -1)];
     }
     private void buildUserFromSession(){
         Map<String, String> paramUser = new HashMap<>();

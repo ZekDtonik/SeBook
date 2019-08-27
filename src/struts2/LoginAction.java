@@ -72,7 +72,7 @@ public class LoginAction extends ActionSupport implements SessionAware, AuthRequ
                     sessionCookie.setMaxAge(60 * 30);
                     res.addCookie(sessionCookie);
 
-                    this.result = ResultMessage.applyResult("AU200",true,"Login realizado com sucesso!","grated");
+                    this.result = ResultMessage.applyResult("AU200",true,"Login realizado com sucesso!","granted");
 
                 }
             }

@@ -26,8 +26,7 @@ public class ListCategory extends ActionSupport {
 
     public ListCategory() {
         String[] uri = ServletActionContext.getRequest().getRequestURI().split("/");
-        if(uri.length >= 4)
-            this.actionValue = uri[4];
+        this.actionValue = uri[(uri.length -1)];
     }
 
     @Action(value = "/system/categorys")
